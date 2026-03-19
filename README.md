@@ -4,9 +4,13 @@ ___
 <div style="display:flex;justify-content:space-around;font-style:italic;"> Getting the basis down • Aiming high • Chasing my dream </div>
 
 ___
+
 <h1 style="display:flex;justify-content:space-around;"><strong>Hi, I'm purple rain</strong></h1>
+
 *A college student in China.*
+
 ___
+
 ### My tech stack 
 
 I love C, C++ and JS.
