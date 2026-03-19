@@ -1,11 +1,11 @@
 ![tech stack](https://raw.githubusercontent.com/PurpleRain-PR/PurpleRain-PR/main/github_profile_anim_cpp/build.svg)
 ___
 
-<div style="display:flex;justify-content:space-around;font-style:italic;"> Getting the basis down • Aiming high • Chasing my dream </div>
+<div align="center"> Getting the basis down • Aiming high • Chasing my dream </div>
 
 ___
 
-<h1 style="display:flex;justify-content:space-around;"><strong>Hi, I'm purple rain</strong></h1>
+<h1 align="center"><strong>Hi, I'm purple rain</strong></h1>
 
 *A college student in China.*
 
