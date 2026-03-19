@@ -1,0 +1,1058 @@
+<svg id="main" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-800 -450 1600 900"
+    width="1920" height="1080">
+    <style>
+        .screenLocator{
+            stroke: #ffffff30;
+            stroke-width: 2;
+            stroke-dasharray: 20,10;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+        .bg{
+            fill: #000;
+        }
+        .axis{
+            fill:none;
+            stroke-width: 2px;
+            stroke: #ffffff30;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .cubeFace{
+            fill: #555555;
+        }
+        .light{
+            fill: #ffffff;
+        }
+        .wall{
+            fill: #000000;
+        }
+        .groundDiffuse{
+            fill: url(#groundDiffuse);
+            mix-blend-mode: hard-light;
+        }
+        .fog{
+            fill: url(#fog);
+        }
+        .solidShadow{
+            fill: #000;
+            filter: drop-shadow(0 1px 2px black)
+        }
+        .reflectionShadow{
+            fill: #000;
+            filter: blur(10px);
+            mix-blend-mode: hard-light;
+        }
+        .reflectionIllu{
+            filter: blur(10px) opacity(0.4);
+        }
+        .logo{
+            }
+        .logoBloom{
+            filter: blur(10px);
+            transform: translateY(6px);
+        }
+        .logorefl{
+            filter: blur(10px);
+        }
+        /* *, */
+        .debug{
+            fill: url(#dashedPatternDebug);
+            stroke-width: 2px;
+            stroke-dasharray: 20,10;
+            stroke: #00ff00;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+    <rect x="-800" y="-450" width="1600" height="900" fill="#cccccc" class="bg" />
+    <defs>
+        <radialGradient id="groundDiffuse" fy="0%">
+            <stop offset="1.6%" stop-color="#FFF" stop-opacity="1"/>
+            <stop offset="4.6%" stop-color="#FFF" stop-opacity="0.77"/>
+            <stop offset="7.16%" stop-color="#FFF" stop-opacity="0.63"/>
+            <stop offset="10.29%" stop-color="#FFF" stop-opacity="0.50"/>
+            <stop offset="13.75%" stop-color="#FFF" stop-opacity="0.39"/>
+            <stop offset="17.73%" stop-color="#FFF" stop-opacity="0.31"/>
+            <stop offset="21.79%" stop-color="#FFF" stop-opacity="0.25"/>
+            <stop offset="26.71%" stop-color="#FFF" stop-opacity="0.22"/>
+            <stop offset="31.46%" stop-color="#FFF" stop-opacity="0.19"/>
+            <stop offset="38.27%" stop-color="#FFF" stop-opacity="0.16"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="fog" cx="50%" cy="100%" r="150%" fx="50%" fy="100%">
+            <stop offset="0.35%" stop-color="#FFF" stop-opacity="1"/>
+            <stop offset="0.97%" stop-color="#FFF" stop-opacity="0.76"/>
+            <stop offset="2.16%" stop-color="#FFF" stop-opacity="0.49"/>
+            <stop offset="3.26%" stop-color="#FFF" stop-opacity="0.31"/>
+            <stop offset="4.15%" stop-color="#FFF" stop-opacity="0.22"/>
+            <stop offset="5.49%" stop-color="#FFF" stop-opacity="0.16"/>
+            <stop offset="20%" stop-color="#FFF" stop-opacity="0.01"/>
+            <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
+        </radialGradient>
+        <pattern id="dashedPatternDebug" patternUnits="userSpaceOnUse" width="20" height="20"
+            patternTransform="rotate(-45)">
+            <line x1="0" y1="0" x2="0" y2="20" stroke="#0f0" stroke-width="2"
+                stroke-dasharray="4,4"/>
+        </pattern>
+        <clipPath id="cubeUpReflectionClip"><use href="#cbup"/></clipPath>
+        <clipPath id="cubeDownReflectionClip"><use href="#cbdown"/></clipPath>
+        <clipPath id="cubeFrontReflectionClip"><use href="#cbfront"/></clipPath>
+        <clipPath id="cubeBackReflectionClip"><use href="#cbback"/></clipPath>
+        <clipPath id="cubeLeftReflectionClip"><use href="#cbleft"/></clipPath>
+        <clipPath id="cubeRightReflectionClip"><use href="#cbright"/></clipPath>
+    </defs>
+    <polygon class="cubeFace wall">
+        $[wall]
+    </polygon>
+    <g id="sceneIllumination">
+        $[gnddiffpos]
+        <g>
+            $[gnddiffrot]
+            <rect class="fog" x="-1200" y="-2400" width="2400" height="2400" rx="4" opacity="0.9"/>
+            <g>
+                $[gnddiffsca]
+                <ellipse class="groundDiffuse"  rx="6000" ry="600" cx="0" cy="600" opacity="0.3"/>
+                <ellipse class="groundDiffuse" rx="300" ry="20" cx="0" cy="20"/>
+            </g>
+        </g>
+    </g>
+    <polygon class="cubeFace light">
+        $[light]
+    </polygon>
+    <polygon class="solidShadow">
+        $[blkbtmshadow]
+        $[blkbtmshopa]
+    </polygon>
+    <polygon class="solidShadow">
+        $[blkshadow]
+    </polygon>
+    <use href="#logo" class="logo logoBloom"/>
+    <g id="logo" class="logo">
+        <g>
+            $[logocopa]
+            <g>
+                <polygon fill="#394AAB">$[logoc0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logoc1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocppopa]
+            <g>
+                <polygon fill="#00599C">$[logocpp0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocpp1]</polygon>
+                <polygon fill="#FFFFFF">$[logocpp2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logojsopa]
+            <g fill="#FFE42D">
+                <polygon>$[logojs0]</polygon>
+                <polygon>$[logojs1]</polygon>
+                <polygon>$[logojs2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logohtmlopa]
+            <g fill="#E14E1D">
+                <polygon>$[logohtml0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logohtml1]</polygon>
+                <polygon>$[logohtml2]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logohtml3]</polygon>
+                <polygon>$[logohtml4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocssopa]
+            <g fill="#0277BD">
+                <polygon>$[logocss0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logocss1]</polygon>
+                <polygon>$[logocss2]</polygon>
+                <polygon>$[logocss3]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logocss4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logorustopa]
+            <g fill="#F74C00">
+                <polygon>$[logorust0]</polygon>
+                <polygon>$[logorust1]</polygon>
+                <polygon>$[logorust2]</polygon>
+                <polygon>$[logorust3]</polygon>
+                <polygon>$[logorust4]</polygon>
+                <polygon>$[logorust5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logogoopa]
+            <g fill="#00AED9">
+                <polygon>$[logogo0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logogo2]</polygon>
+                <polygon>$[logogo3]</polygon>
+                <polygon>$[logogo4]</polygon>
+                <polygon>$[logogo5]</polygon>
+                <polygon>$[logogo6]</polygon>
+            </g>
+            <g fill="#00AED9">
+                <polygon>$[logogo1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logooctaveopa]
+            <g fill="#D7ECFA">
+                <polygon>$[logooctave0]</polygon>
+            </g>
+            <g fill="#0790C0">
+                <polygon>$[logooctave2]</polygon>
+            </g>
+            <g fill="#D7ECFA">
+                <polygon>$[logooctave1]</polygon>
+            </g>
+            <g fill="#FF7F2A">
+                <polygon>$[logooctave3]</polygon>
+                <polygon>$[logooctave4]</polygon>
+                <polygon>$[logooctave5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logoopenglopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logoopengl0]</polygon>
+            </g>
+            <g fill="#5586A4">
+                <polygon>$[logoopengl3]</polygon>
+                <polygon>$[logoopengl4]</polygon>
+                <polygon>$[logoopengl5]</polygon>
+                <polygon>$[logoopengl6]</polygon>
+                <polygon>$[logoopengl7]</polygon>
+                <polygon>$[logoopengl8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logoopengl1]</polygon>
+                <polygon>$[logoopengl2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logovulkanopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkan0]</polygon>
+            </g>
+            <g fill="#A41E22">
+                <polygon>$[logovulkan2]</polygon>
+                <polygon>$[logovulkan3]</polygon>
+                <polygon>$[logovulkan4]</polygon>
+                <polygon>$[logovulkan5]</polygon>
+                <polygon>$[logovulkan6]</polygon>
+                <polygon>$[logovulkan7]</polygon>
+                <polygon>$[logovulkan8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkan1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logodesmosopa]
+            <g fill="#138041">
+                <polygon>$[logodesmos0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logodesmos3]</polygon>
+                <polygon>$[logodesmos4]</polygon>
+                <polygon>$[logodesmos5]</polygon>
+                <polygon>$[logodesmos6]</polygon>
+                <polygon>$[logodesmos7]</polygon>
+                <polygon>$[logodesmos8]</polygon>
+                <polygon>$[logodesmos9]</polygon>
+                <polygon>$[logodesmos10]</polygon>
+                <polygon>$[logodesmos11]</polygon>
+                <polygon>$[logodesmos12]</polygon>
+            </g>
+            <g fill="#138041">
+                <polygon>$[logodesmos1]</polygon>
+                <polygon>$[logodesmos2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logomcopa]
+            <g fill="#414141">
+                <polygon>$[logomc0]</polygon>
+            </g>
+            <g fill="#3FDF00">
+                <polygon>$[logomc1]</polygon>
+            </g>
+            <g fill="#B66400">
+                <polygon>$[logomc2]</polygon>
+            </g>
+        </g>
+    </g>
+    <use href="#logo" class="logo logoBloom" opacity="0.3"/>
+    <polygon class="cubeFace cbleft" id="cbleft">
+        $[blklcol]
+        $[blkleft]
+        $[blklopa]
+    </polygon>
+    <polygon class="cubeFace cbright" id="cbright">
+        $[blkrcol]
+        $[blkright]
+        $[blkropa]
+    </polygon>
+    <polygon class="cubeFace cbup" id="cbup">
+        $[blkucol]
+        $[blkup]
+        $[blkuopa]
+    </polygon>
+    <polygon class="cubeFace cbdown" id="cbdown">
+        $[blkdcol] 
+        $[blkdown]
+        $[blkdopa]
+    </polygon>
+    <polygon class="cubeFace cbfront" id="cbfront">
+        $[blkfcol]
+        $[blkfront]
+        $[blkfopa]
+    </polygon>
+    <polygon class="cubeFace cbback" id="cbback">
+        $[blkbcol]
+        $[blkback]
+        $[blkbopa]
+    </polygon>
+    <use href="#sceneIllumination" class="reflectionIllu" clip-path="url(#cubeLeftReflectionClip)">
+        $[blklopa]
+    </use>
+    <use href="#sceneIllumination" class="reflectionIllu" clip-path="url(#cubeRightReflectionClip)">
+        $[blkropa]
+    </use>
+    <!-- <polygon class="reflectionShadow" clip-path="url(#cubeUpReflectionClip)">
+        $[blkshumir]
+        $[blkuopa]
+    </polygon>
+    <polygon class="reflectionShadow" clip-path="url(#cubeDownReflectionClip)">
+        $[blkshdmir]
+        $[blkdopa]
+    </polygon>
+    <polygon class="reflectionShadow" clip-path="url(#cubeFrontReflectionClip)">
+        $[blkshfmir]
+        $[blkfopa]
+    </polygon>
+    <polygon class="reflectionShadow" clip-path="url(#cubeBackReflectionClip)">
+        $[blkshbmir]
+        $[blkbopa]
+    </polygon> -->
+    <polyline class="axis">
+        [axis]
+    </polyline>
+    <g opacity="0">
+        <rect x="-720" y="-405" width="1440" height="810" class="screenLocator"/>
+        <rect x="-640" y="-360" width="1280" height="720" class="screenLocator"/>
+        <line x1="-800" y1="-450" x2="800" y2="450" class="screenLocator"/>
+        <line x1="800" y1="-450" x2="-800" y2="450" class="screenLocator"/>
+    </g>
+
+    <g id="logof" class="logorefl" clip-path="url(#cubeFrontReflectionClip)">
+        $[blkfopa]
+        <g>
+            $[logocopa]
+            <g>
+                <polygon fill="#394AAB">$[logocblkfmir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocblkfmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocppopa]
+            <g>
+                <polygon fill="#00599C">$[logocppblkfmir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocppblkfmir1]</polygon>
+                <polygon fill="#FFFFFF">$[logocppblkfmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logojsopa]
+            <g fill="#FFE42D">
+                <polygon>$[logojsblkfmir0]</polygon>
+                <polygon>$[logojsblkfmir1]</polygon>
+                <polygon>$[logojsblkfmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logohtmlopa]
+            <g fill="#E14E1D">
+                <polygon>$[logohtmlblkfmir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logohtmlblkfmir1]</polygon>
+                <polygon>$[logohtmlblkfmir2]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logohtmlblkfmir3]</polygon>
+                <polygon>$[logohtmlblkfmir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocssopa]
+            <g fill="#0277BD">
+                <polygon>$[logocssblkfmir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logocssblkfmir1]</polygon>
+                <polygon>$[logocssblkfmir2]</polygon>
+                <polygon>$[logocssblkfmir3]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logocssblkfmir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logorustopa]
+            <g fill="#F74C00">
+                <polygon>$[logorustblkfmir0]</polygon>
+                <polygon>$[logorustblkfmir1]</polygon>
+                <polygon>$[logorustblkfmir2]</polygon>
+                <polygon>$[logorustblkfmir3]</polygon>
+                <polygon>$[logorustblkfmir4]</polygon>
+                <polygon>$[logorustblkfmir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logogoopa]
+            <g fill="#00AED9">
+                <polygon>$[logogoblkfmir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logogoblkfmir2]</polygon>
+                <polygon>$[logogoblkfmir3]</polygon>
+                <polygon>$[logogoblkfmir4]</polygon>
+                <polygon>$[logogoblkfmir5]</polygon>
+                <polygon>$[logogoblkfmir6]</polygon>
+            </g>
+            <g fill="#00AED9">
+                <polygon>$[logogoblkfmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logooctaveopa]
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkfmir0]</polygon>
+            </g>
+            <g fill="#0790C0">
+                <polygon>$[logooctaveblkfmir2]</polygon>
+            </g>
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkfmir1]</polygon>
+            </g>
+            <g fill="#FF7F2A">
+                <polygon>$[logooctaveblkfmir3]</polygon>
+                <polygon>$[logooctaveblkfmir4]</polygon>
+                <polygon>$[logooctaveblkfmir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logoopenglopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkfmir0]</polygon>
+            </g>
+            <g fill="#5586A4">
+                <polygon>$[logoopenglblkfmir3]</polygon>
+                <polygon>$[logoopenglblkfmir4]</polygon>
+                <polygon>$[logoopenglblkfmir5]</polygon>
+                <polygon>$[logoopenglblkfmir6]</polygon>
+                <polygon>$[logoopenglblkfmir7]</polygon>
+                <polygon>$[logoopenglblkfmir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkfmir1]</polygon>
+                <polygon>$[logoopenglblkfmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logovulkanopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkfmir0]</polygon>
+            </g>
+            <g fill="#A41E22">
+                <polygon>$[logovulkanblkfmir2]</polygon>
+                <polygon>$[logovulkanblkfmir3]</polygon>
+                <polygon>$[logovulkanblkfmir4]</polygon>
+                <polygon>$[logovulkanblkfmir5]</polygon>
+                <polygon>$[logovulkanblkfmir6]</polygon>
+                <polygon>$[logovulkanblkfmir7]</polygon>
+                <polygon>$[logovulkanblkfmir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkfmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logodesmosopa]
+            <g fill="#138041">
+                <polygon>$[logodesmosblkfmir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logodesmosblkfmir3]</polygon>
+                <polygon>$[logodesmosblkfmir4]</polygon>
+                <polygon>$[logodesmosblkfmir5]</polygon>
+                <polygon>$[logodesmosblkfmir6]</polygon>
+                <polygon>$[logodesmosblkfmir7]</polygon>
+                <polygon>$[logodesmosblkfmir8]</polygon>
+                <polygon>$[logodesmosblkfmir9]</polygon>
+                <polygon>$[logodesmosblkfmir10]</polygon>
+                <polygon>$[logodesmosblkfmir11]</polygon>
+                <polygon>$[logodesmosblkfmir12]</polygon>
+            </g>
+            <g fill="#138041">
+                <polygon>$[logodesmosblkfmir1]</polygon>
+                <polygon>$[logodesmosblkfmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logomcopa]
+            <g fill="#414141">
+                <polygon>$[logomcblkfmir0]</polygon>
+            </g>
+            <g fill="#3FDF00">
+                <polygon>$[logomcblkfmir1]</polygon>
+            </g>
+            <g fill="#B66400">
+                <polygon>$[logomcblkfmir2]</polygon>
+            </g>
+        </g>
+    </g>
+
+    <g id="logob" class="logorefl" clip-path="url(#cubeBackReflectionClip)">
+        $[blkbopa]
+        <g>
+            $[logocopa]
+            <g>
+                <polygon fill="#394AAB">$[logocblkbmir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocblkbmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocppopa]
+            <g>
+                <polygon fill="#00599C">$[logocppblkbmir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocppblkbmir1]</polygon>
+                <polygon fill="#FFFFFF">$[logocppblkbmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logojsopa]
+            <g fill="#FFE42D">
+                <polygon>$[logojsblkbmir0]</polygon>
+                <polygon>$[logojsblkbmir1]</polygon>
+                <polygon>$[logojsblkbmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logohtmlopa]
+            <g fill="#E14E1D">
+                <polygon>$[logohtmlblkbmir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logohtmlblkbmir1]</polygon>
+                <polygon>$[logohtmlblkbmir2]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logohtmlblkbmir3]</polygon>
+                <polygon>$[logohtmlblkbmir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocssopa]
+            <g fill="#0277BD">
+                <polygon>$[logocssblkbmir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logocssblkbmir1]</polygon>
+                <polygon>$[logocssblkbmir2]</polygon>
+                <polygon>$[logocssblkbmir3]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logocssblkbmir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logorustopa]
+            <g fill="#F74C00">
+                <polygon>$[logorustblkbmir0]</polygon>
+                <polygon>$[logorustblkbmir1]</polygon>
+                <polygon>$[logorustblkbmir2]</polygon>
+                <polygon>$[logorustblkbmir3]</polygon>
+                <polygon>$[logorustblkbmir4]</polygon>
+                <polygon>$[logorustblkbmir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logogoopa]
+            <g fill="#00AED9">
+                <polygon>$[logogoblkbmir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logogoblkbmir2]</polygon>
+                <polygon>$[logogoblkbmir3]</polygon>
+                <polygon>$[logogoblkbmir4]</polygon>
+                <polygon>$[logogoblkbmir5]</polygon>
+                <polygon>$[logogoblkbmir6]</polygon>
+            </g>
+            <g fill="#00AED9">
+                <polygon>$[logogoblkbmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logooctaveopa]
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkbmir0]</polygon>
+            </g>
+            <g fill="#0790C0">
+                <polygon>$[logooctaveblkbmir2]</polygon>
+            </g>
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkbmir1]</polygon>
+            </g>
+            <g fill="#FF7F2A">
+                <polygon>$[logooctaveblkbmir3]</polygon>
+                <polygon>$[logooctaveblkbmir4]</polygon>
+                <polygon>$[logooctaveblkbmir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logoopenglopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkbmir0]</polygon>
+            </g>
+            <g fill="#5586A4">
+                <polygon>$[logoopenglblkbmir3]</polygon>
+                <polygon>$[logoopenglblkbmir4]</polygon>
+                <polygon>$[logoopenglblkbmir5]</polygon>
+                <polygon>$[logoopenglblkbmir6]</polygon>
+                <polygon>$[logoopenglblkbmir7]</polygon>
+                <polygon>$[logoopenglblkbmir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkbmir1]</polygon>
+                <polygon>$[logoopenglblkbmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logovulkanopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkbmir0]</polygon>
+            </g>
+            <g fill="#A41E22">
+                <polygon>$[logovulkanblkbmir2]</polygon>
+                <polygon>$[logovulkanblkbmir3]</polygon>
+                <polygon>$[logovulkanblkbmir4]</polygon>
+                <polygon>$[logovulkanblkbmir5]</polygon>
+                <polygon>$[logovulkanblkbmir6]</polygon>
+                <polygon>$[logovulkanblkbmir7]</polygon>
+                <polygon>$[logovulkanblkbmir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkbmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logodesmosopa]
+            <g fill="#138041">
+                <polygon>$[logodesmosblkbmir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logodesmosblkbmir3]</polygon>
+                <polygon>$[logodesmosblkbmir4]</polygon>
+                <polygon>$[logodesmosblkbmir5]</polygon>
+                <polygon>$[logodesmosblkbmir6]</polygon>
+                <polygon>$[logodesmosblkbmir7]</polygon>
+                <polygon>$[logodesmosblkbmir8]</polygon>
+                <polygon>$[logodesmosblkbmir9]</polygon>
+                <polygon>$[logodesmosblkbmir10]</polygon>
+                <polygon>$[logodesmosblkbmir11]</polygon>
+                <polygon>$[logodesmosblkbmir12]</polygon>
+            </g>
+            <g fill="#138041">
+                <polygon>$[logodesmosblkbmir1]</polygon>
+                <polygon>$[logodesmosblkbmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logomcopa]
+            <g fill="#414141">
+                <polygon>$[logomcblkbmir0]</polygon>
+            </g>
+            <g fill="#3FDF00">
+                <polygon>$[logomcblkbmir1]</polygon>
+            </g>
+            <g fill="#B66400">
+                <polygon>$[logomcblkbmir2]</polygon>
+            </g>
+        </g>
+    </g>
+
+    <g id="logou" class="logorefl" clip-path="url(#cubeUpReflectionClip)">
+        $[blkuopa]
+        <g>
+            $[logocopa]
+            <g>
+                <polygon fill="#394AAB">$[logocblkumir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocblkumir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocppopa]
+            <g>
+                <polygon fill="#00599C">$[logocppblkumir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocppblkumir1]</polygon>
+                <polygon fill="#FFFFFF">$[logocppblkumir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logojsopa]
+            <g fill="#FFE42D">
+                <polygon>$[logojsblkumir0]</polygon>
+                <polygon>$[logojsblkumir1]</polygon>
+                <polygon>$[logojsblkumir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logohtmlopa]
+            <g fill="#E14E1D">
+                <polygon>$[logohtmlblkumir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logohtmlblkumir1]</polygon>
+                <polygon>$[logohtmlblkumir2]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logohtmlblkumir3]</polygon>
+                <polygon>$[logohtmlblkumir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocssopa]
+            <g fill="#0277BD">
+                <polygon>$[logocssblkumir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logocssblkumir1]</polygon>
+                <polygon>$[logocssblkumir2]</polygon>
+                <polygon>$[logocssblkumir3]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logocssblkumir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logorustopa]
+            <g fill="#F74C00">
+                <polygon>$[logorustblkumir0]</polygon>
+                <polygon>$[logorustblkumir1]</polygon>
+                <polygon>$[logorustblkumir2]</polygon>
+                <polygon>$[logorustblkumir3]</polygon>
+                <polygon>$[logorustblkumir4]</polygon>
+                <polygon>$[logorustblkumir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logogoopa]
+            <g fill="#00AED9">
+                <polygon>$[logogoblkumir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logogoblkumir2]</polygon>
+                <polygon>$[logogoblkumir3]</polygon>
+                <polygon>$[logogoblkumir4]</polygon>
+                <polygon>$[logogoblkumir5]</polygon>
+                <polygon>$[logogoblkumir6]</polygon>
+            </g>
+            <g fill="#00AED9">
+                <polygon>$[logogoblkumir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logooctaveopa]
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkumir0]</polygon>
+            </g>
+            <g fill="#0790C0">
+                <polygon>$[logooctaveblkumir2]</polygon>
+            </g>
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkumir1]</polygon>
+            </g>
+            <g fill="#FF7F2A">
+                <polygon>$[logooctaveblkumir3]</polygon>
+                <polygon>$[logooctaveblkumir4]</polygon>
+                <polygon>$[logooctaveblkumir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logoopenglopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkumir0]</polygon>
+            </g>
+            <g fill="#5586A4">
+                <polygon>$[logoopenglblkumir3]</polygon>
+                <polygon>$[logoopenglblkumir4]</polygon>
+                <polygon>$[logoopenglblkumir5]</polygon>
+                <polygon>$[logoopenglblkumir6]</polygon>
+                <polygon>$[logoopenglblkumir7]</polygon>
+                <polygon>$[logoopenglblkumir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkumir1]</polygon>
+                <polygon>$[logoopenglblkumir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logovulkanopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkumir0]</polygon>
+            </g>
+            <g fill="#A41E22">
+                <polygon>$[logovulkanblkumir2]</polygon>
+                <polygon>$[logovulkanblkumir3]</polygon>
+                <polygon>$[logovulkanblkumir4]</polygon>
+                <polygon>$[logovulkanblkumir5]</polygon>
+                <polygon>$[logovulkanblkumir6]</polygon>
+                <polygon>$[logovulkanblkumir7]</polygon>
+                <polygon>$[logovulkanblkumir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkumir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logodesmosopa]
+            <g fill="#138041">
+                <polygon>$[logodesmosblkumir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logodesmosblkumir3]</polygon>
+                <polygon>$[logodesmosblkumir4]</polygon>
+                <polygon>$[logodesmosblkumir5]</polygon>
+                <polygon>$[logodesmosblkumir6]</polygon>
+                <polygon>$[logodesmosblkumir7]</polygon>
+                <polygon>$[logodesmosblkumir8]</polygon>
+                <polygon>$[logodesmosblkumir9]</polygon>
+                <polygon>$[logodesmosblkumir10]</polygon>
+                <polygon>$[logodesmosblkumir11]</polygon>
+                <polygon>$[logodesmosblkumir12]</polygon>
+            </g>
+            <g fill="#138041">
+                <polygon>$[logodesmosblkumir1]</polygon>
+                <polygon>$[logodesmosblkumir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logomcopa]
+            <g fill="#414141">
+                <polygon>$[logomcblkumir0]</polygon>
+            </g>
+            <g fill="#3FDF00">
+                <polygon>$[logomcblkumir1]</polygon>
+            </g>
+            <g fill="#B66400">
+                <polygon>$[logomcblkumir2]</polygon>
+            </g>
+        </g>
+    </g>
+
+    <g id="logod" class="logorefl" clip-path="url(#cubeDownReflectionClip)">
+        $[blkdopa]
+        <g>
+            $[logocopa]
+            <g>
+                <polygon fill="#394AAB">$[logocblkdmir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocblkdmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocppopa]
+            <g>
+                <polygon fill="#00599C">$[logocppblkdmir0]</polygon>
+            </g>
+            <g>
+                <polygon fill="#FFFFFF">$[logocppblkdmir1]</polygon>
+                <polygon fill="#FFFFFF">$[logocppblkdmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logojsopa]
+            <g fill="#FFE42D">
+                <polygon>$[logojsblkdmir0]</polygon>
+                <polygon>$[logojsblkdmir1]</polygon>
+                <polygon>$[logojsblkdmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logohtmlopa]
+            <g fill="#E14E1D">
+                <polygon>$[logohtmlblkdmir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logohtmlblkdmir1]</polygon>
+                <polygon>$[logohtmlblkdmir2]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logohtmlblkdmir3]</polygon>
+                <polygon>$[logohtmlblkdmir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logocssopa]
+            <g fill="#0277BD">
+                <polygon>$[logocssblkdmir0]</polygon>
+            </g>
+            <g fill="#E5E5E5">
+                <polygon>$[logocssblkdmir1]</polygon>
+                <polygon>$[logocssblkdmir2]</polygon>
+                <polygon>$[logocssblkdmir3]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logocssblkdmir4]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logorustopa]
+            <g fill="#F74C00">
+                <polygon>$[logorustblkdmir0]</polygon>
+                <polygon>$[logorustblkdmir1]</polygon>
+                <polygon>$[logorustblkdmir2]</polygon>
+                <polygon>$[logorustblkdmir3]</polygon>
+                <polygon>$[logorustblkdmir4]</polygon>
+                <polygon>$[logorustblkdmir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logogoopa]
+            <g fill="#00AED9">
+                <polygon>$[logogoblkdmir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logogoblkdmir2]</polygon>
+                <polygon>$[logogoblkdmir3]</polygon>
+                <polygon>$[logogoblkdmir4]</polygon>
+                <polygon>$[logogoblkdmir5]</polygon>
+                <polygon>$[logogoblkdmir6]</polygon>
+            </g>
+            <g fill="#00AED9">
+                <polygon>$[logogoblkdmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logooctaveopa]
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkdmir0]</polygon>
+            </g>
+            <g fill="#0790C0">
+                <polygon>$[logooctaveblkdmir2]</polygon>
+            </g>
+            <g fill="#D7ECFA">
+                <polygon>$[logooctaveblkdmir1]</polygon>
+            </g>
+            <g fill="#FF7F2A">
+                <polygon>$[logooctaveblkdmir3]</polygon>
+                <polygon>$[logooctaveblkdmir4]</polygon>
+                <polygon>$[logooctaveblkdmir5]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logoopenglopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkdmir0]</polygon>
+            </g>
+            <g fill="#5586A4">
+                <polygon>$[logoopenglblkdmir3]</polygon>
+                <polygon>$[logoopenglblkdmir4]</polygon>
+                <polygon>$[logoopenglblkdmir5]</polygon>
+                <polygon>$[logoopenglblkdmir6]</polygon>
+                <polygon>$[logoopenglblkdmir7]</polygon>
+                <polygon>$[logoopenglblkdmir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logoopenglblkdmir1]</polygon>
+                <polygon>$[logoopenglblkdmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logovulkanopa]
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkdmir0]</polygon>
+            </g>
+            <g fill="#A41E22">
+                <polygon>$[logovulkanblkdmir2]</polygon>
+                <polygon>$[logovulkanblkdmir3]</polygon>
+                <polygon>$[logovulkanblkdmir4]</polygon>
+                <polygon>$[logovulkanblkdmir5]</polygon>
+                <polygon>$[logovulkanblkdmir6]</polygon>
+                <polygon>$[logovulkanblkdmir7]</polygon>
+                <polygon>$[logovulkanblkdmir8]</polygon>
+            </g>
+            <g fill="#F0F0F0">
+                <polygon>$[logovulkanblkdmir1]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logodesmosopa]
+            <g fill="#138041">
+                <polygon>$[logodesmosblkdmir0]</polygon>
+            </g>
+            <g fill="#FFFFFF">
+                <polygon>$[logodesmosblkdmir3]</polygon>
+                <polygon>$[logodesmosblkdmir4]</polygon>
+                <polygon>$[logodesmosblkdmir5]</polygon>
+                <polygon>$[logodesmosblkdmir6]</polygon>
+                <polygon>$[logodesmosblkdmir7]</polygon>
+                <polygon>$[logodesmosblkdmir8]</polygon>
+                <polygon>$[logodesmosblkdmir9]</polygon>
+                <polygon>$[logodesmosblkdmir10]</polygon>
+                <polygon>$[logodesmosblkdmir11]</polygon>
+                <polygon>$[logodesmosblkdmir12]</polygon>
+            </g>
+            <g fill="#138041">
+                <polygon>$[logodesmosblkdmir1]</polygon>
+                <polygon>$[logodesmosblkdmir2]</polygon>
+            </g>
+        </g>
+        <g>
+            $[logomcopa]
+            <g fill="#414141">
+                <polygon>$[logomcblkdmir0]</polygon>
+            </g>
+            <g fill="#3FDF00">
+                <polygon>$[logomcblkdmir1]</polygon>
+            </g>
+            <g fill="#B66400">
+                <polygon>$[logomcblkdmir2]</polygon>
+            </g>
+        </g>
+    </g>
+
+</svg>
