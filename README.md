@@ -14,22 +14,38 @@ ___
 ### My tech stack 
 
 I love C, C++ and JS.
+
 I'm new to Rust and Go.
+
 I sometimes write some shaders in GLSL and WGSL.
+
 Sometimes write small toys in ASM.
+
+___
 
 ### My hobbies
 
 Design and polish web pages.
+
 Computer graphics.
+
 Play around with offbeat new ideas.
+
 Dig into the underlying principles.
+
 Build wheels myself in various languages.
+
 Write music.
+
 Edit video.
+
 Photography.
+
 Desmos and GNU Octave.
+
 M!!!necraft!
+
+___
 
 
 
