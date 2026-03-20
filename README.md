@@ -1,68 +1,36 @@
-![tech stack](https://raw.githubusercontent.com/PurpleRain-PR/PurpleRain-PR/main/github_profile_anim_cpp/build.svg)
+
+<img align="right" src="https://raw.githubusercontent.com/PurpleRain-PR/PurpleRain-PR/main/github_profile_anim_cpp/build.svg" width="66%">
+
+
+
+
+
+
+
+> **走稳脚下的同时**
+> **也别忘了眺望前路**
+>    _— Purple Rain_
+
+
+> **Plus j'étudie, plus je découvre mon ignorance.**
+>    _— René Descartes_
 ___
+### My tech stack
 
-<div align="center"> Getting the basis down • Aiming high • Chasing my dream </div>
-
++ I love C, C++ and JS.
++ I'm new to Rust and Go.
++ I sometimes write some shaders in GLSL and WGSL.
++ Sometimes write small toys in ASM.
 ___
-
-<h1 align="center"><strong>Hi, I'm purple rain</strong></h1>
-
-*A college student in China.*
-
-___
-
-### My tech stack 
-
-I love C, C++ and JS.
-
-I'm new to Rust and Go.
-
-I sometimes write some shaders in GLSL and WGSL.
-
-Sometimes write small toys in ASM.
-
-___
-
 ### My hobbies
 
-Design and polish web pages.
-
-Computer graphics.
-
-Play around with offbeat new ideas.
-
-Dig into the underlying principles.
-
-Build wheels myself in various languages.
-
-Write music.
-
-Edit video.
-
-Photography.
-
-Desmos and GNU Octave.
-
-M!!!necraft!
-
-___
-
-
-
-
-
-
-<!--
-**PurpleRain-PR/PurpleRain-PR** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
++ Design and polish web pages.
++ Computer graphics.
++ Play around with offbeat new ideas.
++ Dig into the underlying principles.
++ Build wheels myself in various languages.
++ Write music.
++ Edit video.
++ Photography.
++ Desmos and GNU Octave.
++ M!!!necraft!
