@@ -1,14 +1,14 @@
 
 <img align="right" src="https://raw.githubusercontent.com/PurpleRain-PR/PurpleRain-PR/main/github_profile_anim_cpp/build.svg" width="66%">
-<br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
-> **走稳脚下的同时**
-> **也别忘了眺望前路**
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_— Purple Rain_
+> **走稳脚下的同时**<br>
+> **也别忘了眺望前路**<br>
+> _— Purple Rain_
 
 
-> **Plus j'étudie, plus je découvre mon ignorance.**
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;— René Descartes_
+> **Plus j'étudie, plus je découvre mon ignorance.**<br>
+> _— René Descartes_    
 ___
 ### My tech stack
 
