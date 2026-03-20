@@ -276,7 +276,7 @@ int main() {
 		for(int i = 0; i < 4; i++) swap(blkright_raw[1][i], blkleft_raw[2][i]);
 
 		camRot = anim_cam_0((double)counter / 180 * M_PI);
-		// camRot = anim_cam_0((double)90.0 / 180 * M_PI);
+		// camRot = anim_cam_0((double)180.0 / 180 * M_PI);
 		double lowestCenterY = 10.0;
 		double frontmostEdgeX = -10.0;
 		for(int i = 0; i < 4; i++) frontmostEdgeX = fmax(frontmostEdgeX, blkleft_raw[i][0]);

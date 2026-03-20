@@ -1,5 +1,5 @@
 <svg id="main" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-800 -450 1600 900"
-    width="1920" height="1080">
+    width="1920" height="1080" style="filter:brightness(1.1);">
     <style>
         .screenLocator{
             stroke: #ffffff30;
@@ -103,7 +103,7 @@
         <clipPath id="cubeLeftReflectionClip"><use href="#cbleft"/></clipPath>
         <clipPath id="cubeRightReflectionClip"><use href="#cbright"/></clipPath>
     </defs>
-    <polygon class="cubeFace wall">
+    <polygon class="wall">
         $[wall]
     </polygon>
     <g id="sceneIllumination">
