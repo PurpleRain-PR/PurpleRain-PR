@@ -448,7 +448,7 @@ int main() {
 			Matrix offsetVec(1,4);
 			offsetVec.clear();
 			offsetVec[0][0] = offset;
-			const double logoOpa = clamp((offset + 24.0) * 0.2, 0.0, 1.0) * clamp(-0.5 - offset, 0.0, 1.0);
+			const double logoOpa = clamp(pow(fabs(offset + /*24.0*/ 24.0) * 0.05, 3), 0.0, 1.0) * clamp(-0.5 - offset, 0.0, 1.0);
 			writeOpaData(all_logos[p]->opaFile[0], logoOpa);
 			lights[p].intensity = logoOpa * 0.002;
 			lights[p].pos[0] = offset;

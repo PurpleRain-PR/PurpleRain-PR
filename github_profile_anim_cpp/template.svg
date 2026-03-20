@@ -54,7 +54,7 @@
             transform: translateY(6px);
         }
         .logorefl{
-            filter: blur(10px);
+            filter: blur(15px);
         }
         /* *, */
         .debug{
