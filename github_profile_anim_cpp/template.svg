@@ -1,24 +1,24 @@
 <svg id="main" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="-800 -450 1600 900"
     width="1920" height="1080" style="filter:brightness(1.1);">
     <style>
-        .screenLocator{
+        /* .screenLocator{
             stroke: #ffffff30;
             stroke-width: 2;
             stroke-dasharray: 20,10;
             stroke-linecap: round;
             stroke-linejoin: round;
             fill: none;
-        }
+        } */
         .bg{
             fill: #000;
         }
-        .axis{
+        /* .axis{
             fill:none;
             stroke-width: 2px;
             stroke: #ffffff30;
             stroke-linecap: round;
             stroke-linejoin: round;
-        }
+        } */
         .cubeFace{
             fill: #555555;
         }
@@ -37,18 +37,18 @@
         }
         .solidShadow{
             fill: #000;
-            filter: drop-shadow(0 1px 2px black)
+            filter: blur(2px)drop-shadow(0 1px 2px black)
         }
-        .reflectionShadow{
+        /* .reflectionShadow{
             fill: #000;
             filter: blur(10px);
             mix-blend-mode: hard-light;
-        }
+        } */
         .reflectionIllu{
             filter: blur(10px) opacity(0.4);
         }
-        .logo{
-            }
+        /* .logo{
+        } */
         .logoBloom{
             filter: blur(10px);
             transform: translateY(6px);
@@ -56,15 +56,18 @@
         .logorefl{
             filter: blur(15px);
         }
+        .blockrefl{
+            filter: blur(10px)opacity(0.5);
+        }
         /* *, */
-        .debug{
+        /* .debug{
             fill: url(#dashedPatternDebug);
             stroke-width: 2px;
             stroke-dasharray: 20,10;
             stroke: #00ff00;
             stroke-linecap: round;
             stroke-linejoin: round;
-        }
+        } */
     </style>
     <rect x="-800" y="-450" width="1600" height="900" fill="#cccccc" class="bg" />
     <defs>
@@ -91,11 +94,11 @@
             <stop offset="20%" stop-color="#FFF" stop-opacity="0.01"/>
             <stop offset="100%" stop-color="#FFF" stop-opacity="0"/>
         </radialGradient>
-        <pattern id="dashedPatternDebug" patternUnits="userSpaceOnUse" width="20" height="20"
+        <!-- <pattern id="dashedPatternDebug" patternUnits="userSpaceOnUse" width="20" height="20"
             patternTransform="rotate(-45)">
             <line x1="0" y1="0" x2="0" y2="20" stroke="#0f0" stroke-width="2"
                 stroke-dasharray="4,4"/>
-        </pattern>
+        </pattern> -->
         <clipPath id="cubeUpReflectionClip"><use href="#cbup"/></clipPath>
         <clipPath id="cubeDownReflectionClip"><use href="#cbdown"/></clipPath>
         <clipPath id="cubeFrontReflectionClip"><use href="#cbfront"/></clipPath>
@@ -128,6 +131,38 @@
     <polygon class="solidShadow">
         $[blkshadow]
     </polygon>
+    <g class="blockrefl">
+        <polygon>
+            $[blkfrefl]
+            $[blkfreflopa]
+            $[blkfcol]
+        </polygon>
+        <polygon>
+            $[blkbrefl]
+            $[blkbreflopa]
+            $[blkbcol]
+        </polygon>
+        <polygon>
+            $[blkdrefl]
+            $[blkdreflopa]
+            $[blkdcol]
+        </polygon>
+        <polygon>
+            $[blkurefl]
+            $[blkureflopa]
+            $[blkucol]
+        </polygon>
+        <polygon>
+            $[blklrefl]
+            $[blklopa]
+            $[blklcol]
+        </polygon>
+        <polygon>
+            $[blkrrefl]
+            $[blkropa]
+            $[blkrcol]
+        </polygon>
+    </g>
     <use href="#logo" class="logo logoBloom"/>
     <g id="logo" class="logo">
         <g>
@@ -338,31 +373,30 @@
         $[blkropa]
     </use>
     <!-- <polygon class="reflectionShadow" clip-path="url(#cubeUpReflectionClip)">
-        $[blkshumir]
-        $[blkuopa]
+        [blkshumir]
+        [blkuopa]
     </polygon>
     <polygon class="reflectionShadow" clip-path="url(#cubeDownReflectionClip)">
-        $[blkshdmir]
-        $[blkdopa]
+        [blkshdmir]
+        [blkdopa]
     </polygon>
     <polygon class="reflectionShadow" clip-path="url(#cubeFrontReflectionClip)">
-        $[blkshfmir]
-        $[blkfopa]
+        [blkshfmir]
+        [blkfopa]
     </polygon>
     <polygon class="reflectionShadow" clip-path="url(#cubeBackReflectionClip)">
-        $[blkshbmir]
-        $[blkbopa]
+        [blkshbmir]
+        [blkbopa]
     </polygon> -->
-    <polyline class="axis">
+    <!-- <polyline class="axis">
         [axis]
-    </polyline>
-    <g opacity="0">
+    </polyline> -->
+    <!-- <g opacity="0">
         <rect x="-720" y="-405" width="1440" height="810" class="screenLocator"/>
         <rect x="-640" y="-360" width="1280" height="720" class="screenLocator"/>
         <line x1="-800" y1="-450" x2="800" y2="450" class="screenLocator"/>
         <line x1="800" y1="-450" x2="-800" y2="450" class="screenLocator"/>
-    </g>
-
+    </g> -->
     <g id="logof" class="logorefl" clip-path="url(#cubeFrontReflectionClip)">
         $[blkfopa]
         <g>
@@ -535,7 +569,6 @@
             </g>
         </g>
     </g>
-
     <g id="logob" class="logorefl" clip-path="url(#cubeBackReflectionClip)">
         $[blkbopa]
         <g>
@@ -708,7 +741,6 @@
             </g>
         </g>
     </g>
-
     <g id="logou" class="logorefl" clip-path="url(#cubeUpReflectionClip)">
         $[blkuopa]
         <g>
@@ -1054,5 +1086,4 @@
             </g>
         </g>
     </g>
-
 </svg>

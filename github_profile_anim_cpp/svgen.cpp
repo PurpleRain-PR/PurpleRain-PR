@@ -99,6 +99,12 @@ int main() {
 	FILE *fp_blkshdmir = newPolyFile("blkshdmir");
 	FILE *fp_blkshfmir = newPolyFile("blkshfmir");
 	FILE *fp_blkshbmir = newPolyFile("blkshbmir");
+	FILE *fp_blklrefl = newPolyFile("blklrefl");
+	FILE *fp_blkrrefl = newPolyFile("blkrrefl");
+	FILE *fp_blkurefl = newPolyFile("blkurefl");
+	FILE *fp_blkdrefl = newPolyFile("blkdrefl");
+	FILE *fp_blkfrefl = newPolyFile("blkfrefl");
+	FILE *fp_blkbrefl = newPolyFile("blkbrefl");
 
 	writePosHead(fp_blkleft);
 	writePosHead(fp_blkright);
@@ -115,6 +121,12 @@ int main() {
 	writePosHead(fp_blkshdmir);
 	writePosHead(fp_blkshfmir);
 	writePosHead(fp_blkshbmir);
+	writePosHead(fp_blklrefl);
+	writePosHead(fp_blkrrefl);
+	writePosHead(fp_blkurefl);
+	writePosHead(fp_blkdrefl);
+	writePosHead(fp_blkfrefl);
+	writePosHead(fp_blkbrefl);
 
 	FILE *fp_blkl_opa = newPolyFile("blklopa");
 	FILE *fp_blkr_opa = newPolyFile("blkropa");
@@ -123,6 +135,10 @@ int main() {
 	FILE *fp_blkf_opa = newPolyFile("blkfopa");
 	FILE *fp_blkb_opa = newPolyFile("blkbopa");
 	FILE *fp_blkbtmsh_opa = newPolyFile("blkbtmshopa");
+	FILE *fp_blkurefl_opa = newPolyFile("blkureflopa");
+	FILE *fp_blkdrefl_opa = newPolyFile("blkdreflopa");
+	FILE *fp_blkfrefl_opa = newPolyFile("blkfreflopa");
+	FILE *fp_blkbrefl_opa = newPolyFile("blkbreflopa");
 
 	writeOpaHead(fp_blkl_opa);
 	writeOpaHead(fp_blkr_opa);
@@ -131,6 +147,10 @@ int main() {
 	writeOpaHead(fp_blkf_opa);
 	writeOpaHead(fp_blkb_opa);
 	writeOpaHead(fp_blkbtmsh_opa);
+	writeOpaHead(fp_blkurefl_opa);
+	writeOpaHead(fp_blkdrefl_opa);
+	writeOpaHead(fp_blkfrefl_opa);
+	writeOpaHead(fp_blkbrefl_opa);
 
 	FILE *fp_gnddiff_rot = newPolyFile("gnddiffrot");
 
@@ -247,8 +267,8 @@ int main() {
 		{{0,0,0}, {58, 149, 96}, 1.0},//desmos
 		{{0,0,0}, {116, 100, 28}, 1.0},//mc
 		//scene light
-		{{35, 0, 5}, {1, 1, 1}, 300},
-		{{35, 0, -5}, {1, 1, 1}, 300},
+		{{35, 2, 5}, {1, 1, 1}, 800},
+		{{35, 2, -5}, {1, 1, 1}, 800},
 		{{30, 30, 0}, {1, 1, 1}, 400},
 		{{-40, 1, 0}, {1, 1, 1}, 60},
 	};
@@ -285,9 +305,6 @@ int main() {
 		Matrix blklcenter = center(blkleft_raw);
 		lowestCenterY = fmin(lowestCenterY, blklcenter[0][1]);
 		Matrix blkleft_trans = blkleft_raw * camRot;
-		normal = faceNormal(blkleft_trans, 0, 1, 2);
-		normalize3(normal);
-		// writeColData(fp_blkl_col, (normal[0][0] + 1.0) * 0.5, (normal[0][1] + 1.0) * 0.5, (normal[0][2] + 1.0) * 0.5);
 		blkleft_trans = blkleft_trans * perspective;
 		Matrix blkLeft_final = applyPerspective(blkleft_trans, false);
 		normal = faceNormal(blkLeft_final, 0, 3, 6);
@@ -298,9 +315,6 @@ int main() {
 		Matrix blkrcenter = center(blkright_raw);
 		lowestCenterY = fmin(lowestCenterY, blkrcenter[0][1]);
 		Matrix blkright_trans = blkright_raw * camRot;
-		normal = faceNormal(blkright_trans, 1, 0, 2);
-		normalize3(normal);
-		// writeColData(fp_blkr_col, (normal[0][0] + 1.0) * 0.5, (normal[0][1] + 1.0) * 0.5, (normal[0][2] + 1.0) * 0.5);
 		blkright_trans = blkright_trans * perspective;
 		Matrix blkRight_final = applyPerspective(blkright_trans, false);
 		normal = faceNormal(blkRight_final, 3, 0, 6);
@@ -311,9 +325,6 @@ int main() {
 		Matrix blkucenter = center(blkup_raw);
 		lowestCenterY = fmin(lowestCenterY, blkucenter[0][1]);
 		Matrix blkup_trans = blkup_raw * camRot;
-		normal = faceNormal(blkup_trans, 1, 0, 2);
-		normalize3(normal);
-		// writeColData(fp_blku_col, (normal[0][0] + 1.0) * 0.5, (normal[0][1] + 1.0) * 0.5, (normal[0][2] + 1.0) * 0.5);
 		blkup_trans = blkup_trans * perspective;
 		Matrix blkup_final = applyPerspective(blkup_trans, false);
 		writePosData(fp_blkup, blkup_final, vpwidth, vpheight);
@@ -324,9 +335,6 @@ int main() {
 		Matrix blkdcenter = center(blkdown_raw);
 		lowestCenterY = fmin(lowestCenterY, blkdcenter[0][1]);
 		Matrix blkdown_trans = blkdown_raw * camRot;
-		normal = faceNormal(blkdown_trans, 0, 1, 2);
-		normalize3(normal);
-		// writeColData(fp_blkd_col, (normal[0][0] + 1.0) * 0.5, (normal[0][1] + 1.0) * 0.5, (normal[0][2] + 1.0) * 0.5);
 		blkdown_trans = blkdown_trans * perspective;
 		Matrix blkdown_final = applyPerspective(blkdown_trans, false);
 		writePosData(fp_blkdown, blkdown_final, vpwidth, vpheight);
@@ -337,9 +345,6 @@ int main() {
 		Matrix blkfcenter = center(blkfront_raw);
 		lowestCenterY = fmin(lowestCenterY, blkfcenter[0][1]);
 		Matrix blkfront_trans = blkfront_raw * camRot;
-		normal = faceNormal(blkfront_trans, 0, 1, 2);
-		normalize3(normal);
-		// writeColData(fp_blkf_col, (normal[0][0] + 1.0) * 0.5, (normal[0][1] + 1.0) * 0.5, (normal[0][2] + 1.0) * 0.5);
 		blkfront_trans = blkfront_trans * perspective;
 		Matrix blkfront_final = applyPerspective(blkfront_trans, false);
 		writePosData(fp_blkfront, blkfront_final, vpwidth, vpheight);
@@ -350,9 +355,6 @@ int main() {
 		Matrix blkbcenter = center(blkback_raw);
 		lowestCenterY = fmin(lowestCenterY, blkbcenter[0][1]);
 		Matrix blkback_trans = blkback_raw * camRot;
-		normal = faceNormal(blkback_trans, 1, 0, 2);
-		normalize3(normal);
-		// writeColData(fp_blkb_col, (normal[0][0] + 1.0) * 0.5, (normal[0][1] + 1.0) * 0.5, (normal[0][2] + 1.0) * 0.5);
 		blkback_trans = blkback_trans * perspective;
 		Matrix blkback_final = applyPerspective(blkback_trans, false);
 		writePosData(fp_blkback, blkback_final, vpwidth, vpheight);
@@ -496,6 +498,49 @@ int main() {
 		Matrix blkblight = calcPointLighting(blkbcenter, blkbnorw, lights, LIGHT_COUNT(lights));
 		writeColData(fp_blkb_col, blkblight[0][0], blkblight[0][1], blkblight[0][2]);
 
+		Matrix gndNormal(1, 3);
+		gndNormal.clear();
+		gndNormal[0][1] = 1.0;
+		Matrix origin(1, 3);
+		origin.clear();
+
+		Matrix blkfrefl_raw = mirror3(blkfront_raw, gndNormal, origin);
+		Matrix blkbrefl_raw = mirror3(blkback_raw, gndNormal, origin);
+		Matrix blkurefl_raw = mirror3(blkup_raw, gndNormal, origin);
+		Matrix blkdrefl_raw = mirror3(blkdown_raw, gndNormal, origin);
+		Matrix blklrefl_raw = mirror3(blkleft_raw, gndNormal, origin);
+		Matrix blkrrefl_raw = mirror3(blkright_raw, gndNormal, origin);
+
+		Matrix blkfrefl_trans = blkfrefl_raw * camRot * perspective;
+		Matrix blkbrefl_trans = blkbrefl_raw * camRot * perspective;
+		Matrix blkurefl_trans = blkurefl_raw * camRot * perspective;
+		Matrix blkdrefl_trans = blkdrefl_raw * camRot * perspective;
+		Matrix blklrefl_trans = blklrefl_raw * camRot * perspective;
+		Matrix blkrrefl_trans = blkrrefl_raw * camRot * perspective;
+
+		Matrix blkfrefl_final = applyPerspective(blkfrefl_trans, false);
+		Matrix blkbrefl_final = applyPerspective(blkbrefl_trans, false);
+		Matrix blkurefl_final = applyPerspective(blkurefl_trans, false);
+		Matrix blkdrefl_final = applyPerspective(blkdrefl_trans, false);
+		Matrix blklrefl_final = applyPerspective(blklrefl_trans, false);
+		Matrix blkrrefl_final = applyPerspective(blkrrefl_trans, false);
+
+		writePosData(fp_blklrefl, blklrefl_final, vpwidth, vpheight);
+		writePosData(fp_blkrrefl, blkrrefl_final, vpwidth, vpheight);
+		writePosData(fp_blkurefl, blkurefl_final, vpwidth, vpheight);
+		writePosData(fp_blkdrefl, blkdrefl_final, vpwidth, vpheight);
+		writePosData(fp_blkfrefl, blkfrefl_final, vpwidth, vpheight);
+		writePosData(fp_blkbrefl, blkbrefl_final, vpwidth, vpheight);
+
+		normal = faceNormal(blkurefl_final, 0, 3, 6);
+		writeOpaData(fp_blkurefl_opa, normal[0][2] < 0 ? 1 : 0);
+		normal = faceNormal(blkdrefl_final, 3, 0, 6);
+		writeOpaData(fp_blkdrefl_opa, normal[0][2] < 0 ? 1 : 0);
+		normal = faceNormal(blkfrefl_final, 3, 0, 6);
+		writeOpaData(fp_blkfrefl_opa, normal[0][2] < 0 ? 1 : 0);
+		normal = faceNormal(blkbrefl_final, 0, 3, 6);
+		writeOpaData(fp_blkbrefl_opa, normal[0][2] < 0 ? 1 : 0);
+
 		printf("render frame [%d]\n", frameCounter++);
 	}
 
@@ -514,6 +559,12 @@ int main() {
 	writePosTail(fp_blkshdmir);
 	writePosTail(fp_blkshfmir);
 	writePosTail(fp_blkshbmir);
+	writePosTail(fp_blklrefl);
+	writePosTail(fp_blkrrefl);
+	writePosTail(fp_blkurefl);
+	writePosTail(fp_blkdrefl);
+	writePosTail(fp_blkfrefl);
+	writePosTail(fp_blkbrefl);
 		
 	fclose(fp_blkleft);
 	fclose(fp_blkright);
@@ -530,6 +581,12 @@ int main() {
 	fclose(fp_blkshdmir);
 	fclose(fp_blkshfmir);
 	fclose(fp_blkshbmir);
+	fclose(fp_blklrefl);
+	fclose(fp_blkrrefl);
+	fclose(fp_blkurefl);
+	fclose(fp_blkdrefl);
+	fclose(fp_blkfrefl);
+	fclose(fp_blkbrefl);
 
 	writeOpaTail(fp_blkl_opa);
 	writeOpaTail(fp_blkr_opa);
@@ -538,6 +595,10 @@ int main() {
 	writeOpaTail(fp_blkf_opa);
 	writeOpaTail(fp_blkb_opa);
 	writeOpaTail(fp_blkbtmsh_opa);
+	writeOpaTail(fp_blkurefl_opa);
+	writeOpaTail(fp_blkdrefl_opa);
+	writeOpaTail(fp_blkfrefl_opa);
+	writeOpaTail(fp_blkbrefl_opa);
 
 	fclose(fp_blkl_opa);
 	fclose(fp_blkr_opa);
@@ -546,6 +607,10 @@ int main() {
 	fclose(fp_blkf_opa);
 	fclose(fp_blkb_opa);
 	fclose(fp_blkbtmsh_opa);
+	fclose(fp_blkurefl_opa);
+	fclose(fp_blkdrefl_opa);
+	fclose(fp_blkfrefl_opa);
+	fclose(fp_blkbrefl_opa);
 
 	writeRotTail(fp_gnddiff_rot);
 
